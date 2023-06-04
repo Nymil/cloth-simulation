@@ -3,10 +3,10 @@
 class Node {
     static NEXT_ID = 0;
     constructor(x, y) {
-        this.stationary = false;
+        this.static = false;
         this.color = '#e3e3e3'
         this.stationaryColor = '#cb5454'
-        this.radius = 5;
+        this.radius = 7;
         this.pos = {
             x: x,
             y: y
@@ -24,8 +24,17 @@ class Node {
     }
 
     draw() {
-        const drawColor = this.stationary ? this.stationaryColor : this.color;
+        const drawColor = this.static ? this.stationaryColor : this.color;
         drawCircle(drawColor, [this.pos.x, this.pos.y], this.radius);
+    }
+
+    toggleStatic() {
+        this.static = !this.static;
+    }
+
+    isAtPos(pos) {
+        const distSquared = (this.pos.x - pos.x)**2 + (this.pos.y - pos.y)**2;
+        return distSquared <= this.radius ** 2;
     }
 
     equals(other) {

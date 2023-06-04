@@ -51,4 +51,13 @@ class Field {
         this.connections.forEach(connection => connection.draw());
         this.nodes.forEach(node => node.draw());
     }
+
+    statifyClick(pos) {
+        const clickedNode = this.getNodeAtPos(pos);
+        if (clickedNode) clickedNode.toggleStatic();
+    }
+
+    getNodeAtPos(pos) {
+        return this.nodes.find(node => node.isAtPos(pos));
+    }
 }
