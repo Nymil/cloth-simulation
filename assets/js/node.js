@@ -13,6 +13,10 @@ class Node {
         Node.NEXT_ID += 1;
     }
 
+    getPos() {
+        return this.pos;
+    }
+
     draw() {
         drawCircle(this.color, [this.pos.x, this.pos.y], this.radius);
     }
