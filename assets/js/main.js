@@ -32,6 +32,11 @@ class Main {
         };
     }
 
+    startSimulation(e) {
+        e.preventDefault();
+        console.log('wooooow, simulating')
+    }
+
     run() {
         // main loop
         setInterval(() => {
@@ -42,5 +47,6 @@ class Main {
 
     addEventListeners() {
         document.addEventListener('mousedown', (e) => this.handleMouseClick(e));
+        document.querySelector('#start-simulation').addEventListener('mousedown', (e) => this.startSimulation(e));
     }
 }
