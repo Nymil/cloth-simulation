@@ -4,7 +4,7 @@ class Connection {
     constructor(startNode, endNode) {
         this.startNode = startNode;
         this.endNode = endNode;
-        this.color = '#989696';
+        this.color = '#b4b4b4';
         this.thickNess = 4;
     }
 
@@ -15,5 +15,4 @@ class Connection {
     getNodes() {
         return [this.startNode, this.endNode];
     }
-
 }

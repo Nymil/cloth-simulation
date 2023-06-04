@@ -3,7 +3,9 @@
 class Node {
     static NEXT_ID = 0;
     constructor(x, y) {
+        this.stationary = false;
         this.color = '#e3e3e3'
+        this.stationaryColor = '#cb5454'
         this.radius = 5;
         this.pos = {
             x: x,
@@ -17,7 +19,16 @@ class Node {
         return this.pos;
     }
 
+    getId() {
+        return this.id;
+    }
+
     draw() {
-        drawCircle(this.color, [this.pos.x, this.pos.y], this.radius);
+        const drawColor = this.stationary ? this.stationaryColor : this.color;
+        drawCircle(drawColor, [this.pos.x, this.pos.y], this.radius);
+    }
+
+    equals(other) {
+        return this.id === other.id;
     }
 }
