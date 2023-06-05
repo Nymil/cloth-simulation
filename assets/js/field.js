@@ -48,7 +48,9 @@ class Field {
     }
 
     innactForces(frame) {
-        this.nodes.forEach(node => node.moveAccordingToForces(frame));
+        this.nodes.forEach(node => node.innactGravity());
+        this.connections.forEach(connection => connection.innactForce());
+        this.nodes.forEach(node => node.move());
     }
 
     draw() {

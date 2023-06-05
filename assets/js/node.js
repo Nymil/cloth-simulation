@@ -14,11 +14,7 @@ class Node {
         this.id = Node.NEXT_ID;
         Node.NEXT_ID += 1;
 
-        this.gravitationalForce = {
-            x: 0,
-            y: 3
-        }
-        this.connectionForce = {
+        this.vel = {
             x: 0,
             y: 0
         }
@@ -37,19 +33,18 @@ class Node {
         drawCircle(drawColor, [this.pos.x, this.pos.y], this.radius);
     }
 
-    setConnectionForce(fx, fy) {
-        this.connectionForce.x = fx;
-        this.connectionForce.y = fy;
-    }
-
     toggleStatic() {
         this.static = !this.static;
     }
 
-    moveAccordingToForces(frame) {
+    innactGravity() {
+        this.vel.y += 1;
+    }
+
+    move() {
         if (this.static) return
-        this.pos.x += (this.gravitationalForce.x + this.connectionForce.x) * frame / 3;
-        this.pos.y += (this.gravitationalForce.y + this.connectionForce.y) * frame / 3;
+        this.pos.x += this.vel.x;
+        this.pos.y += this.vel.y;
     }
 
     isAtPos(pos) {

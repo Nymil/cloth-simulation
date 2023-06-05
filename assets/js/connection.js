@@ -12,6 +12,10 @@ class Connection {
         drawLine(this.color, [this.startNode.getPos().x, this.startNode.getPos().y, this.endNode.getPos().x, this.endNode.getPos().y], this.thickNess);
     }
 
+    innactForce() {
+
+    }
+
     getNodes() {
         return [this.startNode, this.endNode];
     }
