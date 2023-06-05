@@ -46,10 +46,10 @@ class Node {
         this.static = !this.static;
     }
 
-    moveAccordingToForces() {
+    moveAccordingToForces(frame) {
         if (this.static) return
-        this.pos.x += this.gravitationalForce.x + this.connectionForce.x;
-        this.pos.y += this.gravitationalForce.y + this.connectionForce.y;
+        this.pos.x += (this.gravitationalForce.x + this.connectionForce.x) * frame / 3;
+        this.pos.y += (this.gravitationalForce.y + this.connectionForce.y) * frame / 3;
     }
 
     isAtPos(pos) {

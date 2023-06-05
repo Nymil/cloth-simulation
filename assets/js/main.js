@@ -4,6 +4,7 @@ class Main {
     constructor() {
         this.backgroundColor = '#8C8C8C';
         this.fps = 60;
+        this.simulationFrame = 0;
         this.field = new Field();
         this.simulationStarted = false;
         this.addEventListeners()
@@ -16,7 +17,8 @@ class Main {
 
     update() {
         if (!this.simulationStarted) return;
-        this.field.innactForces();
+        this.simulationFrame++;
+        this.field.innactForces(this.simulationFrame);
     }
 
     handleMouseClick(e) {

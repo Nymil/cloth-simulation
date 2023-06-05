@@ -47,8 +47,8 @@ class Field {
         }
     }
 
-    innactForces() {
-        this.nodes.forEach(node => node.moveAccordingToForces());
+    innactForces(frame) {
+        this.nodes.forEach(node => node.moveAccordingToForces(frame));
     }
 
     draw() {
