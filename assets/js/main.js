@@ -15,7 +15,8 @@ class Main {
     }
 
     update() {
-
+        if (!this.simulationStarted) return;
+        this.field.innactForces();
     }
 
     handleMouseClick(e) {
