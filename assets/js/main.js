@@ -20,7 +20,7 @@ class Main {
 
     handleMouseClick(e) {
         e.preventDefault();
-        if (!this.simulationStarted) return;
+        if (this.simulationStarted) return;
         const clickedPos = this.getMousePos(e);
         this.field.statifyClick(clickedPos);
     }
