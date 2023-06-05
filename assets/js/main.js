@@ -20,6 +20,7 @@ class Main {
 
     handleMouseClick(e) {
         e.preventDefault();
+        if (!this.simulationStarted) return;
         const clickedPos = this.getMousePos(e);
         this.field.statifyClick(clickedPos);
     }
@@ -34,7 +35,7 @@ class Main {
 
     startSimulation(e) {
         e.preventDefault();
-        console.log('wooooow, simulating')
+        this.simulationStarted = true;
     }
 
     run() {
@@ -48,5 +49,6 @@ class Main {
     addEventListeners() {
         document.addEventListener('mousedown', (e) => this.handleMouseClick(e));
         document.querySelector('#start-simulation').addEventListener('mousedown', (e) => this.startSimulation(e));
+        document.querySelector('canvas').addEventListener('contextmenu', (e) => e.preventDefault());
     }
 }
