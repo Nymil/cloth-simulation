@@ -13,11 +13,6 @@ class Node {
         }
         this.id = Node.NEXT_ID;
         Node.NEXT_ID += 1;
-
-        this.vel = {
-            x: 0,
-            y: 0
-        }
     }
 
     getPos() {
@@ -37,22 +32,8 @@ class Node {
         this.static = !this.static;
     }
 
-    innactGravity() {
-        this.vel.y += 1;
-    }
-
-    move() {
-        if (this.static) return
-        this.pos.x += this.vel.x;
-        this.pos.y += this.vel.y;
-    }
-
     isAtPos(pos) {
         const distSquared = (this.pos.x - pos.x)**2 + (this.pos.y - pos.y)**2;
         return distSquared <= this.radius ** 2;
-    }
-
-    equals(other) {
-        return this.id === other.id;
     }
 }

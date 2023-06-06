@@ -42,15 +42,14 @@ class Field {
                 const yPos = this.offsetToCorner + row * vertDistBetween;
 
                 const generatedNode = new Node(xPos, yPos);
+                if (row === 0 && (col % 5 === 0 || col === this.nodeCount.horizontal - 1)) generatedNode.toggleStatic();
                 this.nodes.push(generatedNode);
             }
         }
     }
 
     innactForces(frame) {
-        this.nodes.forEach(node => node.innactGravity());
-        this.connections.forEach(connection => connection.innactForce());
-        this.nodes.forEach(node => node.move());
+        
     }
 
     draw() {
