@@ -8,6 +8,7 @@ class Field {
         }
         this.offsetToCorner = 30;
         this.distToBottom = 125;
+        this.grabedNode = null;
         this.nodes = [];
         this.fillNodes();
         this.connections = [];
@@ -46,6 +47,31 @@ class Field {
                 this.nodes.push(generatedNode);
             }
         }
+    }
+
+    moveGrabbedNode(pos) {
+        if (!this.grabedNode) return;
+        this.grabedNode.setPos(pos);
+    }
+
+    clearGrabbedNode() {
+        this.grabedNode = null;
+    }
+
+    setGrabbedNode(pos) {
+        let closestNode = null;
+        let closestSquaredLength = null;
+
+        this.nodes.forEach(node => {
+            const nextSquaredLength = node.squaredLengthTo(pos);
+
+            if (!node.isStatic() && (closestNode === null || nextSquaredLength < closestSquaredLength)) {
+                closestNode = node;
+                closestSquaredLength = nextSquaredLength;
+            }
+        });
+
+        this.grabedNode = closestNode;
     }
 
     innactForces() {

@@ -6,6 +6,7 @@ class Main {
         this.fps = 60;
         this.field = new Field();
         this.simulationStarted = false;
+        this.heldMouseButton = null;
         this.addEventListeners()
     }
 
@@ -21,8 +22,11 @@ class Main {
 
     handleMouseClick(e) {
         e.preventDefault();
-        if (this.simulationStarted) return;
         const clickedPos = this.getMousePos(e);
+        if (e.which === 1 && this.simulationStarted) {
+            this.field.setGrabbedNode(clickedPos);
+        }
+        if (this.simulationStarted) return;
         this.field.statifyClick(clickedPos);
     }
 
@@ -39,6 +43,18 @@ class Main {
         this.simulationStarted = true;
     }
 
+    handleCanvasHover(e) {
+        e.preventDefault();
+        const pos = this.getMousePos(e);
+        this.field.moveGrabbedNode(pos);
+    }
+
+    releaseMouse(e) {
+        if (e.which === 1) {
+            this.field.clearGrabbedNode();
+        }
+    }
+
     run() {
         // main loop
         setInterval(() => {
@@ -47,9 +63,12 @@ class Main {
         }, 1000 / this.fps);
     }
 
+
     addEventListeners() {
-        document.addEventListener('mousedown', (e) => this.handleMouseClick(e));
+        document.querySelector('canvas').addEventListener('mousedown', (e) => this.handleMouseClick(e));
         document.querySelector('#start-simulation').addEventListener('mousedown', (e) => this.startSimulation(e));
         document.querySelector('canvas').addEventListener('contextmenu', (e) => e.preventDefault());
+        document.querySelector('canvas').addEventListener('mousemove', (e) => this.handleCanvasHover(e));
+        document.addEventListener('mouseup', (e) => this.releaseMouse(e));
     }
 }

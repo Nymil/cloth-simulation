@@ -48,6 +48,20 @@ class Node {
         this.pos.y += dy;
     }
 
+    squaredLengthTo(pos) {
+        return (pos.x - this.pos.x) ** 2 + (pos.y - this.pos.y) ** 2;
+    }
+
+    isStatic() {
+        return this.static;
+    }
+
+    setPos(pos) {
+        if (this.static) return;
+        this.pos.x = pos.x;
+        this.pos.y = pos.y;
+    }
+
     draw() {
         const drawColor = this.static ? this.stationaryColor : this.color;
         drawCircle(drawColor, [this.pos.x, this.pos.y], this.radius);
