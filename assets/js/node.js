@@ -27,19 +27,25 @@ class Node {
         return this.id;
     }
 
-    updatePosition() {
+    updateGravity() {
         if (this.static) return;
         // temp store current position
         const tempX = this.pos.x;
         const tempY = this.pos.y;
         // move particle according to Verlet integration
         // x' = 2x - x* + a (* AT^2)
-        const g = 1;
-        this.pos.x = 2 * this.pos.x - this.prevPos.x;
-        this.pos.y = 2 * this.pos.y - this.prevPos.y + g;
+        const g = 0.5;
+        this.pos.x = 1.99 * this.pos.x - 0.99 * this.prevPos.x;
+        this.pos.y = 1.99 * this.pos.y - 0.99 * this.prevPos.y + g;
         // then update prev pos
         this.prevPos.x = tempX;
         this.prevPos.y = tempY;
+    }
+
+    moveAmount(dx, dy) {
+        if (this.static) return;
+        this.pos.x += dx;
+        this.pos.y += dy;
     }
 
     draw() {

@@ -49,7 +49,8 @@ class Field {
     }
 
     innactForces() {
-        this.nodes.forEach(node => node.updatePosition());
+        this.nodes.forEach(node => node.updateGravity());
+        this.connections.forEach(connection => connection.satisfyConnection());
     }
 
     draw() {
