@@ -48,8 +48,8 @@ class Field {
         }
     }
 
-    innactForces(frame) {
-        
+    innactForces() {
+        this.nodes.forEach(node => node.updatePosition());
     }
 
     draw() {

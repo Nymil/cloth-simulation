@@ -27,6 +27,21 @@ class Node {
         return this.id;
     }
 
+    updatePosition() {
+        if (this.static) return;
+        // temp store current position
+        const tempX = this.pos.x;
+        const tempY = this.pos.y;
+        // move particle according to Verlet integration
+        // x' = 2x - x* + a (* AT^2)
+        const g = 1;
+        this.pos.x = 2 * this.pos.x - this.prevPos.x;
+        this.pos.y = 2 * this.pos.y - this.prevPos.y + g;
+        // then update prev pos
+        this.prevPos.x = tempX;
+        this.prevPos.y = tempY;
+    }
+
     draw() {
         const drawColor = this.static ? this.stationaryColor : this.color;
         drawCircle(drawColor, [this.pos.x, this.pos.y], this.radius);
