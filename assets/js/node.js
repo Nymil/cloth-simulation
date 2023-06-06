@@ -11,6 +11,10 @@ class Node {
             x: x,
             y: y
         }
+        this.prevPos = {
+            x: x,
+            y: y
+        }
         this.id = Node.NEXT_ID;
         Node.NEXT_ID += 1;
     }
